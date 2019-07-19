@@ -99,12 +99,6 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        # print(self.can_move_left())
-        # print(self.can_move_right())
-        # print(self.compare_item())
-        # print(self._item)
-        # print(self._light)
-        # print(self.light_is_on())
 
         # turn on light to act as loop bool
         self.set_light_on()
@@ -140,6 +134,43 @@ class SortingRobot:
 
         # attempt at from right to left
         # grab the first item and swap it with None from the robots inventory
+
+
+# ==============================================
+# ==============================================
+# ==============================================
+
+        # self.swap_item()
+
+        # while self.light_is_on():
+
+        #     while self.can_move_right():
+        #         if self.compare_item() == 1:
+        #             self.swap_item()
+        #         self.move_right()
+        #         if self.compare_item() == 1:
+        #             self.swap_item()
+
+        #     while self.can_move_left():
+        #         if self.compare_item() == None:
+        #             break
+        #         self.move_left()
+
+        #     self.swap_item()
+
+        #     if self.can_move_right():
+        #         self.move_right()
+        #         self.swap_item()
+
+        #         # while self.can_move_right():
+        #         #     self.move_right()
+        #     else:
+        #         break
+
+
+# ==============================================
+# ==============================================
+# ==============================================
         # self.swap_item()
         # self.move_right()
 
@@ -172,30 +203,30 @@ class SortingRobot:
         #             while self.can_move_left():
         #                 self.move_left()
         #                 print("WHILE CAN MOVE LEFT POSITION", self._position)
-            # while self.can_move_right():
-            #     if not self.can_move_right() and self.compare_item() == None:
-            #         # BASE CASES if robot can't go right any more and compare item returns None, meaning the list behind is all sorted,
-            #         # turn off light and return from function, list should be sorted
-            #         # MOVE OVER 2 AND SEE IF COMPARE ITEM STILL YIELDS NONE...IF SO, ROBOT IS HOLDING NONE AND ALL ELEMENTS ARE IN ARRAY
-            #         self.move_left()
-            #         self.move_left()
-            #     elif self.compare_item() == None:
-            #         self.set_light_off()
-            #         return
-            #     else:  # IF NOT, ROBOT IS STILL HOLDING A NUMBER AND NEEDS TO DROP IT AT THE END OF THE LIST
-            #         self.move_right()
-            #         self.move_right()
-            #         self.swap_item()
-            #         self.set_light_off()
-            #         return
-            #     if self.compare_item() <= 0:
-            #         self.move_right()
-            #     elif self.compare_item() == 1:
-            #         self.swap_item()
-            #         self.move_right()
-            # while self.compare_item() != None and self.can_move_left():
-            #     self.move_left()
-            # self.swap_item()
+        # while self.can_move_right():
+        #     if not self.can_move_right() and self.compare_item() == None:
+        #         # BASE CASES if robot can't go right any more and compare item returns None, meaning the list behind is all sorted,
+        #         # turn off light and return from function, list should be sorted
+        #         # MOVE OVER 2 AND SEE IF COMPARE ITEM STILL YIELDS NONE...IF SO, ROBOT IS HOLDING NONE AND ALL ELEMENTS ARE IN ARRAY
+        #         self.move_left()
+        #         self.move_left()
+        #     elif self.compare_item() == None:
+        #         self.set_light_off()
+        #         return
+        #     else:  # IF NOT, ROBOT IS STILL HOLDING A NUMBER AND NEEDS TO DROP IT AT THE END OF THE LIST
+        #         self.move_right()
+        #         self.move_right()
+        #         self.swap_item()
+        #         self.set_light_off()
+        #         return
+        #     if self.compare_item() <= 0:
+        #         self.move_right()
+        #     elif self.compare_item() == 1:
+        #         self.swap_item()
+        #         self.move_right()
+        # while self.compare_item() != None and self.can_move_left():
+        #     self.move_left()
+        # self.swap_item()
         # if so swap
         # proceed to the end of the list
         # once at the end of the list return to the None location and swap the number you are holding with None
