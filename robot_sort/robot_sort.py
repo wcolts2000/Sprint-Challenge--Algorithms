@@ -81,11 +81,13 @@ class SortingRobot:
         Turn on the robot's light
         """
         self._light = "ON"
+
     def set_light_off(self):
         """
         Turn off the robot's light
         """
         self._light = "OFF"
+
     def light_is_on(self):
         """
         Returns True if the robot's light is on and False otherwise.
@@ -97,14 +99,144 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+
+        # turn on light to act as loop bool
+        self.set_light_on()
+
+        # attempt at from left to right
+        while self.can_move_right():  # TAKE NONE TO THE END OF THE LIST AND SWAP WITH LAST ITEM
+            self.move_right()
+        self.swap_item()
+
+        while self.can_move_left():  # RETURN TO FRONT OF LIST
+            self.move_left()
+
+        while self.light_is_on():
+            # TRAVERSE LIST UNTIL CAN'T MOVE LEFT AND NONE IS FOUND INDICATING LIST HAS BEEN SORTED
+            while self.can_move_right():
+                if self.compare_item() == None:  # ONCE END OF SORTED LIST IS HIT JUMP OUT OF THIS LOOP
+                    break
+                if self.compare_item() == -1:  # IF ITEM IS LARGER THAN ITEM HELD, SWAP THEM
+                    self.swap_item()
+                self.move_right()
+
+            self.swap_item()  # SWAP HELD ITEM WITH NONE AT END OF LIST
+
+            if self.can_move_left():
+                self.move_left()
+                self.swap_item()  # THIS SWAPS NONE WITH LAST SORTED ITEM, GIVING A MARKER FOR SORTED PORTION
+
+                while self.can_move_left():  # GO BACK TO THE START OF THE LIST
+                    self.move_left()
+            else:
+                # IF NO MORE LEFT MOVES ARE AVAILABLE, LIST IS COMPLETED AND BREAK THE LOOP
+                break
+
+        # attempt at from right to left
+        # grab the first item and swap it with None from the robots inventory
 
 
+# =======================================================================
+# ============ Functioning reverse sort: less performant ================
+# =======================================================================
+
+        # self.swap_item()
+
+        # while self.light_is_on():
+
+        #     while self.can_move_right():
+        #         if self.compare_item() == 1:
+        #             self.swap_item()
+        #         self.move_right()
+        #         if self.compare_item() == 1:
+        #             self.swap_item()
+
+        #     while self.can_move_left():
+        #         if self.compare_item() == None:
+        #             break
+        #         self.move_left()
+
+        #     self.swap_item()
+
+        #     if self.can_move_right():
+        #         self.move_right()
+        #         self.swap_item()
+
+        #         # while self.can_move_right():
+        #         #     self.move_right()
+        #     else:
+        #         break
+
+
+# ======================================================
+# =========== Non Functioning First Attempt ============
+# ======================================================
+        # self.swap_item()
+        # self.move_right()
+
+        # # start a while loop
+        # while self.light_is_on():
+
+        #     # check if the item in front of you has a smaller value
+        #     if not self.can_move_right():
+        #         if self.compare_item() == None:
+        #             self.move_left()
+        #             self.move_left()
+        #             if self.compare_item() == None:
+        #                 self.move_right()
+        #                 self.move_right()
+        #                 self.swap_item()
+        #                 self.set_light_off()
+        #                 return
+        #             else:
+        #                 self.set_light_off()
+        #                 return
+        #     while self.can_move_right():
+        #         if self.compare_item() <= 0:
+        #             self.move_right()
+        #             print("IF CAN MOVE RIGHT POSITION NO SWAP", self._position)
+        #         else:
+        #             self.swap_item()
+        #             self.move_right()
+        #             print("IF CAN MOVE RIGHT POSITION SWAPPED ITEM", self._position)
+        #         else:
+        #             while self.can_move_left():
+        #                 self.move_left()
+        #                 print("WHILE CAN MOVE LEFT POSITION", self._position)
+        # while self.can_move_right():
+        #     if not self.can_move_right() and self.compare_item() == None:
+        #         # BASE CASES if robot can't go right any more and compare item returns None, meaning the list behind is all sorted,
+        #         # turn off light and return from function, list should be sorted
+        #         # MOVE OVER 2 AND SEE IF COMPARE ITEM STILL YIELDS NONE...IF SO, ROBOT IS HOLDING NONE AND ALL ELEMENTS ARE IN ARRAY
+        #         self.move_left()
+        #         self.move_left()
+        #     elif self.compare_item() == None:
+        #         self.set_light_off()
+        #         return
+        #     else:  # IF NOT, ROBOT IS STILL HOLDING A NUMBER AND NEEDS TO DROP IT AT THE END OF THE LIST
+        #         self.move_right()
+        #         self.move_right()
+        #         self.swap_item()
+        #         self.set_light_off()
+        #         return
+        #     if self.compare_item() <= 0:
+        #         self.move_right()
+        #     elif self.compare_item() == 1:
+        #         self.swap_item()
+        #         self.move_right()
+        # while self.compare_item() != None and self.can_move_left():
+        #     self.move_left()
+        # self.swap_item()
+        # if so swap
+        # proceed to the end of the list
+        # once at the end of the list return to the None location and swap the number you are holding with None
+        # grab the item to the right and Swap with None
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
 
-    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1, 45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
+    l = [15, 41, 58, 49, 26, 4, 28, 8, 61, 60, 65, 21, 78, 14, 35, 90, 54, 5, 0, 87, 82, 96, 43, 92, 62, 97, 69, 94, 99, 93, 76, 47, 2, 88, 51, 40, 95, 6, 23, 81, 30, 19, 25, 91, 18, 68, 71, 9, 66, 1,
+         45, 33, 3, 72, 16, 85, 27, 59, 64, 39, 32, 24, 38, 84, 44, 80, 11, 73, 42, 20, 10, 29, 22, 98, 17, 48, 52, 67, 53, 74, 77, 37, 63, 31, 7, 75, 36, 89, 70, 34, 79, 83, 13, 57, 86, 12, 56, 50, 55, 46]
 
     robot = SortingRobot(l)
 
